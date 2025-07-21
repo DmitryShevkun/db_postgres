@@ -1,0 +1,17 @@
+services:
+  postgres:
+    image: postgres:17.5
+    container_name: postgres_db
+    restart: always
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: adminpass
+      POSTGRES_DB: testdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./data:/var/lib/postgresql/data
+      - ./init:/docker-entrypoint-initdb.d  # опционально: SQL-скрипты
+
+volumes:
+  data:
